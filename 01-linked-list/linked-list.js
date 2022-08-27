@@ -60,15 +60,50 @@ class LinkedList {
     return temp;
   }
 
-  unshift(value) {}
+  unshift(value) {
+    const newNode = new Node(value);
+
+    if (!this.head) {
+      this.head = newNode;
+      this.tail = newNode;
+    } else {
+      newNode.next = this.head;
+      this.head = newNode;
+    }
+
+    this.length++;
+
+    return this;
+  }
+
+  shift() {
+    if (!this.head) return undefined;
+
+    let temp = this.head;
+    this.head = this.head.next;
+    temp.next = null;
+
+    this.length--;
+
+    if (this.length === 0) {
+      this.tail = null;
+    }
+
+    return temp;
+  }
+
   insert(index, value) {}
 }
 
 const myLinkedList = new LinkedList(4);
 myLinkedList.push(5);
-const poppedNode = myLinkedList.pop();
-console.log(poppedNode);
-myLinkedList.pop();
-myLinkedList.pop();
+myLinkedList.push(11);
 
-console.log(myLinkedList);
+const poppedNode = myLinkedList.pop();
+// console.log(poppedNode);
+// myLinkedList.pop();
+
+myLinkedList.unshift(7);
+myLinkedList.shift();
+
+console.log('final', JSON.stringify(myLinkedList, null, 2));
