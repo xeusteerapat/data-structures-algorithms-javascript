@@ -6,18 +6,6 @@
  * Tail is pointing to null (Null terminated list)
  * Node are made up from the value and pointingTo
  */
-class LinkedList {
-  constructor(value) {
-    const newNode = new Node(value);
-    this.head = newNode;
-    this.tail = this.head;
-    this.length = 1;
-  }
-
-  push(value) {}
-  unshift(value) {}
-  insert(index, value) {}
-}
 
 class Node {
   constructor(value) {
@@ -26,6 +14,34 @@ class Node {
   }
 }
 
-const linkedList = new LinkedList(4);
+class LinkedList {
+  constructor(value) {
+    const newNode = new Node(value);
+    this.head = newNode;
+    this.tail = this.head;
+    this.length = 1;
+  }
 
-console.log(linkedList);
+  push(value) {
+    const newNode = new Node(value);
+
+    if (!this.head) {
+      this.head = newNode;
+      this.head = newNode;
+    } else {
+      this.tail.next = newNode;
+      this.tail = newNode;
+    }
+
+    this.length++;
+    return this;
+  }
+
+  unshift(value) {}
+  insert(index, value) {}
+}
+
+const myLinkedList = new LinkedList(4);
+myLinkedList.push(5);
+
+console.log(myLinkedList);
