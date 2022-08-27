@@ -66,6 +66,8 @@ class LinkedList {
 
 const myLinkedList = new LinkedList(4);
 myLinkedList.push(5);
+const poppedNode = myLinkedList.pop();
+console.log(poppedNode);
 myLinkedList.pop();
 myLinkedList.pop();
 
