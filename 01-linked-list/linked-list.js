@@ -92,6 +92,30 @@ class LinkedList {
     return temp;
   }
 
+  get(index) {
+    if (index < 0 || index >= this.length) return undefined;
+
+    let temp = this.head;
+
+    for (let i = 0; i < index; i++) {
+      temp = temp.next;
+    }
+
+    return temp;
+  }
+
+  set(index, value) {
+    if (index < 0 || index >= this.length) return undefined;
+
+    let temp = this.get(index);
+    if (temp) {
+      temp.value = value;
+      return true;
+    }
+
+    return false;
+  }
+
   insert(index, value) {}
 }
 
@@ -104,6 +128,18 @@ const poppedNode = myLinkedList.pop();
 // myLinkedList.pop();
 
 myLinkedList.unshift(7);
-myLinkedList.shift();
+// myLinkedList.shift();
 
 console.log('final', JSON.stringify(myLinkedList, null, 2));
+
+const myLinkedList2 = new LinkedList(0);
+myLinkedList2.push(1);
+myLinkedList2.push(2);
+myLinkedList2.push(3);
+
+console.log('get method', myLinkedList2.get(2));
+
+console.log(myLinkedList2.set(2, 5));
+console.log(myLinkedList2);
+
+console.log('get method after set new value', myLinkedList2.get(2));
