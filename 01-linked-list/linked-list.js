@@ -130,6 +130,21 @@ class LinkedList {
 
     return true;
   }
+
+  remove(index) {
+    if (index < 0 || index >= this.length) return undefined;
+    if (index === 0) return this.shift();
+    if (index === this.length - 1) return this.pop();
+
+    const before = this.get(index - 1);
+    const temp = before.next;
+
+    before.next = temp.next;
+    temp.next = null;
+    this.length--;
+
+    return temp;
+  }
 }
 
 const myLinkedList = new LinkedList(4);
@@ -167,3 +182,11 @@ myLinkedList3.insert(1, 1);
 
 console.log('myLinkedList3', myLinkedList3);
 console.log('========================================================');
+// remove method
+const myLinkedList4 = new LinkedList(11);
+myLinkedList4.push(3);
+myLinkedList4.push(4);
+myLinkedList4.push(8);
+
+myLinkedList4.remove(2);
+console.log('myLinkedList4', myLinkedList4); // 4 removed
