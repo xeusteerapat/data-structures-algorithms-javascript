@@ -116,7 +116,20 @@ class LinkedList {
     return false;
   }
 
-  insert(index, value) {}
+  insert(index, value) {
+    if (index === 0) return this.unshift(value);
+    if (index === this.length) return this.push(value);
+    if (index < 0 || index > this.length) return false;
+
+    const newNode = new Node(value);
+    const temp = this.get(index - 1);
+
+    newNode.next = temp.next;
+    temp.next = newNode;
+    this.length++;
+
+    return true;
+  }
 }
 
 const myLinkedList = new LinkedList(4);
@@ -132,6 +145,8 @@ myLinkedList.unshift(7);
 
 console.log('final', JSON.stringify(myLinkedList, null, 2));
 
+console.log('========================================================');
+
 const myLinkedList2 = new LinkedList(0);
 myLinkedList2.push(1);
 myLinkedList2.push(2);
@@ -143,3 +158,12 @@ console.log(myLinkedList2.set(2, 5));
 console.log(myLinkedList2);
 
 console.log('get method after set new value', myLinkedList2.get(2));
+console.log('========================================================');
+
+// insert method
+const myLinkedList3 = new LinkedList(0);
+myLinkedList3.push(2);
+myLinkedList3.insert(1, 1);
+
+console.log('myLinkedList3', myLinkedList3);
+console.log('========================================================');
