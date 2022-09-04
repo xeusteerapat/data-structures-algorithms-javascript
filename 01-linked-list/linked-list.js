@@ -145,6 +145,24 @@ class LinkedList {
 
     return temp;
   }
+
+  reverse() {
+    let temp = this.head;
+    this.head = this.tail;
+    this.tail = temp;
+
+    let next = temp.next;
+    let prev = null;
+
+    for (let i = 0; i < this.length; i++) {
+      next = temp.next;
+      temp.next = prev;
+      prev = temp;
+      temp = next;
+    }
+
+    return this;
+  }
 }
 
 const myLinkedList = new LinkedList(4);
@@ -190,3 +208,12 @@ myLinkedList4.push(8);
 
 myLinkedList4.remove(2);
 console.log('myLinkedList4', myLinkedList4); // 4 removed
+console.log('========================================================');
+// reverse method
+const myLinkedList5 = new LinkedList(0);
+myLinkedList5.push(1);
+myLinkedList5.push(2);
+myLinkedList5.push(3);
+
+console.log('myLinkedList5', myLinkedList5); // 4 removed
+console.log('myLinkedList5 reverse', myLinkedList5.reverse());
